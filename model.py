@@ -48,7 +48,7 @@ def summarize_diagnostics(history):
 
 
 # run the test harness for evaluating a model
-def run_test_harness():	
+def run_test_harness():
     # define model
     model = define_model()
     # create data generator
@@ -70,5 +70,23 @@ def run_test_harness():
     summarize_diagnostics(history)
 
 
+def save_model():
+    # define model
+    model = define_model()
+    # create data generator
+    datagen = ImageDataGenerator(featurewise_center=True)
+    # specify imagenet mean values for centering
+    datagen.mean = [123.68, 116.779, 103.939]
+    # prepare iterator
+    train_it = datagen.flow_from_directory('finalize_dogs_vs_cats/',
+                                           class_mode='binary', batch_size=64, target_size=(224, 224))
+    # fit model
+    model.fit_generator(train_it, steps_per_epoch=len(train_it), epochs=10, verbose=0)
+    # save model
+    model.save('final_model.h5')
+
+
 # entry point, run the test harness
-run_test_harness()
+# run_test_harness()
+
+save_model()
