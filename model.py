@@ -1,3 +1,4 @@
+# baseline model for the dogs vs cats dataset
 import sys
 from matplotlib import pyplot
 from keras.utils import to_categorical
@@ -22,7 +23,6 @@ def define_model():
 	model.compile(optimizer=opt, loss='binary_crossentropy', metrics=['accuracy'])
 	return model
 
-
 # plot diagnostic learning curves
 def summarize_diagnostics(history):
 	# plot loss
@@ -39,7 +39,6 @@ def summarize_diagnostics(history):
 	filename = sys.argv[0].split('/')[-1]
 	pyplot.savefig(filename + '_plot.png')
 	pyplot.close()
-
 
 # run the test harness for evaluating a model
 def run_test_harness():
@@ -61,3 +60,5 @@ def run_test_harness():
 	# learning curves
 	summarize_diagnostics(history)
 
+# entry point, run the test harness
+run_test_harness()
