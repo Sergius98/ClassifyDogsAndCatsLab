@@ -19,5 +19,16 @@ def load_image(filename):
 
 
 # load an image and predict the class
-def run_example():
-    pass
+def predict_image_with_model(img_name='sample_image.jpg', model_name='final_model.h5'):
+    # load the image
+    img = load_image(img_name)
+    # load model
+    model = load_model(model_name)
+    # predict the class
+    result = model.predict(img)
+    print(result[0])
+
+    # entry point, run the example
+
+
+predict_image_with_model()
