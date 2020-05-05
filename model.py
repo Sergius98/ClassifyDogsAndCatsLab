@@ -7,8 +7,10 @@ from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
 from keras.layers import Dense
 from keras.layers import Flatten
+from keras.layers import Dropout
 from keras.optimizers import SGD
 from keras.preprocessing.image import ImageDataGenerator
+
 
 
 # define cnn model
