@@ -32,7 +32,7 @@ def define_model():
 	# compile model
 	opt = SGD(lr=0.001, momentum=0.9)
 	model.compile(optimizer=opt, loss='binary_crossentropy', metrics=['accuracy'])
-	return model
+	return model	
 
 # plot diagnostic learning curves
 def summarize_diagnostics(history):
