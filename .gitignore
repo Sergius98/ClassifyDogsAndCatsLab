@@ -2,3 +2,6 @@
 /.idea/
 /test/
 /train/
+/dataset_dogs_vs_cats/
+/dogs_vs_cats_photos.npy
+/dogs_vs_cats_labels.npy
