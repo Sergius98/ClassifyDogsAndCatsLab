@@ -4,6 +4,7 @@ from keras.models import Sequential
 from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
 from keras.layers import Dense
+from keras.preprocessing.image import ImageDataGenerator
 
 # define cnn model
 def define_model():
@@ -26,5 +27,16 @@ def summarize_diagnostics(history):
 
 # run the test harness for evaluating a model
 def run_test_harness():
-    pass
+	# define model
+	model = define_model()
+	# create data generator
+	datagen = ImageDataGenerator(rescale=1.0/255.0)
+	# prepare iterators
+	train_it = datagen.flow_from_directory('dataset_dogs_vs_cats/train/',
+		class_mode='binary', batch_size=64, target_size=(200, 200))
+	test_it = datagen.flow_from_directory('dataset_dogs_vs_cats/test/',
+		class_mode='binary', batch_size=64, target_size=(200, 200))
+	# fit model
+	history = model.fit_generator(train_it, steps_per_epoch=len(train_it),
+		validation_data=test_it, validation_steps=len(test_it), epochs=20, verbose=0)
 
