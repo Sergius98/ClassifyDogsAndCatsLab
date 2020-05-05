@@ -5,6 +5,7 @@ from keras.applications.vgg16 import VGG16
 from keras.models import Model
 from keras.layers import Dense
 from keras.layers import Flatten
+from keras.layers import Dropout
 from keras.optimizers import SGD
 from keras.preprocessing.image import ImageDataGenerator
 
@@ -47,7 +48,7 @@ def summarize_diagnostics(history):
 
 
 # run the test harness for evaluating a model
-def run_test_harness():
+def run_test_harness():	
     # define model
     model = define_model()
     # create data generator
