@@ -1,9 +1,12 @@
 import sys
+from matplotlib import pyplot
 from keras.utils import to_categorical
 from keras.models import Sequential
 from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
 from keras.layers import Dense
+from keras.layers import Flatten
+from keras.optimizers import SGD
 from keras.preprocessing.image import ImageDataGenerator
 
 # define cnn model
@@ -22,7 +25,20 @@ def define_model():
 
 # plot diagnostic learning curves
 def summarize_diagnostics(history):
-    pass
+	# plot loss
+	pyplot.subplot(211)
+	pyplot.title('Cross Entropy Loss')
+	pyplot.plot(history.history['loss'], color='blue', label='train')
+	pyplot.plot(history.history['val_loss'], color='orange', label='test')
+	# plot accuracy
+	pyplot.subplot(212)
+	pyplot.title('Classification Accuracy')
+	pyplot.plot(history.history['accuracy'], color='blue', label='train')
+	pyplot.plot(history.history['val_accuracy'], color='orange', label='test')
+	# save plot to file
+	filename = sys.argv[0].split('/')[-1]
+	pyplot.savefig(filename + '_plot.png')
+	pyplot.close()
 
 
 # run the test harness for evaluating a model
@@ -39,4 +55,9 @@ def run_test_harness():
 	# fit model
 	history = model.fit_generator(train_it, steps_per_epoch=len(train_it),
 		validation_data=test_it, validation_steps=len(test_it), epochs=20, verbose=0)
+	# evaluate model
+	_, acc = model.evaluate_generator(test_it, steps=len(test_it), verbose=0)
+	print('> %.3f' % (acc * 100.0))
+	# learning curves
+	summarize_diagnostics(history)
 
