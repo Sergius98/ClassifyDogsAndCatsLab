@@ -53,7 +53,7 @@ def summarize_diagnostics(history):
 
 
 # run the test harness for evaluating a model
-def run_test_harness():
+def run_test_harness():	
     # define model
     model = define_model()
     # create data generator
