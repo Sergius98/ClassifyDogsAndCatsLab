@@ -1,0 +1,4 @@
+numpy
+shutil
+keras
+random

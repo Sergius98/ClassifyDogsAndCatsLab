@@ -1,4 +1,3 @@
-# save pre-processed images into standard directories (slower, but can run on most PC)
 from os import listdir
 from os import makedirs
 from numpy import asarray
@@ -9,6 +8,7 @@ from random import random
 from keras.preprocessing.image import load_img
 from keras.preprocessing.image import img_to_array
 
+# save pre-processed images into standard directories (slower, but can run on most PC)
 def to_folder():
 # create directories
     dataset_home = 'dataset_dogs_vs_cats/'
