@@ -1,3 +1,6 @@
+shutil
+keras
+random
 cycler==0.10.0
 kiwisolver==1.2.0
 matplotlib==3.2.1
