@@ -10,9 +10,9 @@ from keras.preprocessing.image import img_to_array
 
 
 # save pre-processed images into standard directories (slower, but can run on most PC)
-def to_folder(src_directory = 'train/', dataset_home = 'dataset_dogs_vs_cats/',
+def to_folder(src_directory='train/', dataset_home='dataset_dogs_vs_cats/',
               cat_tag='cat', dog_tag='dog',
-              subdirs = ['train/', 'test/'], labeldirs = ['dogs/', 'cats/']):
+              subdirs=['train/', 'test/'], labeldirs=['dogs/', 'cats/']):
     # create directories
     for subdir in subdirs:
         # create label subdirectories
@@ -30,10 +30,10 @@ def to_folder(src_directory = 'train/', dataset_home = 'dataset_dogs_vs_cats/',
         if random() < val_ratio:
             dst_dir = 'test/'
         if file.startswith(cat_tag):
-            dst = dataset_home + dst_dir + cat_tag + 's/'  + file
+            dst = dataset_home + dst_dir + cat_tag + 's/' + file
             copyfile(src, dst)
         elif file.startswith(dog_tag):
-            dst = dataset_home + dst_dir + dog_tag + 's/'  + file
+            dst = dataset_home + dst_dir + dog_tag + 's/' + file
             copyfile(src, dst)
 
 
